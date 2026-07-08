@@ -1351,18 +1351,4 @@ else:
             
             
                 
-                # ==========================================
-                # 5. SIMPAN KE DATABASE (Silent Save SQLite)
-                # ==========================================
-                try:
-                    import pandas as pd
-                    from sqlalchemy import create_engine
-                    engine = create_engine('sqlite:///database_sentimen.db')
-                    # Hanya menyuntikkan 3 kolom inti agar tidak merusak database utama
-                    df_baru = pd.DataFrame({'teks_bersih': [teks_bersih], 'Prediksi_Sentimen': [pred_sentimen], 'Prediksi_Aspek': [pred_aspek]})
-                    df_baru.to_sql('tabel_klasifikasi', con=engine, if_exists='append', index=False)
-                    st.caption("*(Log System: Data uji coba telah direkam ke database SQLite secara background)*")
-                except Exception as e:
-                    pass
-                else:
-                    st.warning("⚠️ Silakan ketik ulasan terlebih dahulu sebelum menganalisis.")
+                
